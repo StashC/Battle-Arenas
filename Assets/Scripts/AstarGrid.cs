@@ -29,7 +29,7 @@ public class AstarGrid : MonoBehaviour
                 Vector3 worldPoint = bottomLeftWorld + Vector3.right * (x * nodeSize + nodeSize / 2) + 
                     Vector3.up * (y * nodeSize + nodeSize / 2);
                 bool isWalkable = !Physics2D.OverlapCircle(worldPoint, nodeSize / 2, unwalkableMask);
-                grid[x, y] = new Node(isWalkable, worldPoint);
+                grid[x, y] = new Node(isWalkable, worldPoint, x, y);
             }
         }
     }
@@ -48,6 +48,24 @@ public class AstarGrid : MonoBehaviour
         return grid[x, y];
     }
 
+    public List<Node> GetNeighbours(Node node) {
+        List<Node> neighbours = new List<Node>();
+        for(int x = -1; x <= 1; x++) {
+            for(int y = -1; y <= 1; y++) {
+                if(x == 0 & y == 0) continue;
+
+                int checkX = node.gridX + x;
+                int checkY = node.gridY + y;
+
+                if(checkX >= 0 && checkX < gridLenX && checkY >= 0 && checkY < gridLenY) 
+                    neighbours.Add(grid[checkX, checkY]);
+            }
+        }
+
+        return neighbours;
+    }
+
+    public List<Node> path;
     void OnDrawGizmos() {
         Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, gridWorldSize.y, 1));
 
@@ -55,6 +73,9 @@ public class AstarGrid : MonoBehaviour
             foreach(Node n in grid) {
                 //if n is walkable? -> color = white. else, color = red.
                 Gizmos.color = (n.walkable) ? Color.white : Color.red;
+                if(path != null)
+                    if(path.Contains(n))
+                        Gizmos.color = Color.black;
                 Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeSize - 0.1f));
             }
         }

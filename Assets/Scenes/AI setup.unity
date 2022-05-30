@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 84447027}
   - component: {fileID: 84447028}
+  - component: {fileID: 84447029}
   m_Layer: 0
   m_Name: AStar
   m_TagString: Untagged
@@ -166,12 +167,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95bac8fdd21a76c43821d212629acd15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 944925109}
   gridWorldSize: {x: 30, y: 30}
   nodeSize: 1
   unwalkableMask:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &84447029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84447026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d5b1bc76eb5c6e4091886365a35355e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seeker: {fileID: 835330021}
+  target: {fileID: 944925109}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
