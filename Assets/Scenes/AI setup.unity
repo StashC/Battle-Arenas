@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 84447027}
   - component: {fileID: 84447028}
   - component: {fileID: 84447029}
+  - component: {fileID: 84447030}
   m_Layer: 0
   m_Name: AStar
   m_TagString: Untagged
@@ -167,6 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95bac8fdd21a76c43821d212629acd15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayGridGizmos: 0
   gridWorldSize: {x: 30, y: 30}
   nodeSize: 1
   unwalkableMask:
@@ -184,8 +186,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d5b1bc76eb5c6e4091886365a35355e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seeker: {fileID: 835330021}
-  target: {fileID: 944925109}
+--- !u!114 &84447030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84447026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75e0b84918504b54ea7c453e179c700b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,7 +251,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -388,6 +400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 835330021}
   - component: {fileID: 835330020}
+  - component: {fileID: 835330022}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -460,6 +473,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &835330022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835330019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a0e0e4b88be2024290ae87fb23c5cdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 944925109}
+  speed: 20
 --- !u!1 &944925107
 GameObject:
   m_ObjectHideFlags: 0

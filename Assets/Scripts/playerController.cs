@@ -7,21 +7,27 @@ public class playerController : MonoBehaviour
 {
     [Header("Component References")]
     [SerializeField] private PlayerControls _playerControls;
+    public healthScript _healthScript;
+    [SerializeField] private SpellController _spellController;
     private Rigidbody2D rb;
+
+
+
 
     [Header("Customization")]
     [SerializeField] private float _movementSpeed;
     [SerializeField] private float _lookOffset;
     [SerializeField] private GameObject _attack;
-    public healthScript _healthScript;
     [SerializeField] private float _dodgeLength;
     [SerializeField] private float _dodgeCooldown;
 
-    private bool canEnterDodge;
+    //InputHandling
     private InputAction move;
     private InputAction fire;
     private InputAction mouseIn;
     private InputAction dodge;
+
+    private bool canEnterDodge;
 
     void Awake() {
         _playerControls = new PlayerControls();
@@ -62,6 +68,8 @@ public class playerController : MonoBehaviour
         ApplyPlayerMovement();
     }
 
+    //CUSTOM METHODS________________________________________
+
     private void ApplyPlayerMovement() {
         Vector2 moveDirection = move.ReadValue<Vector2>();
 
@@ -69,7 +77,7 @@ public class playerController : MonoBehaviour
     }
 
     private void Fire(InputAction.CallbackContext context) {
-        Instantiate(_attack, transform.position, transform.rotation);
+        _spellController.tryCastSpell();
         //Debug.Log("fired");
     }
 

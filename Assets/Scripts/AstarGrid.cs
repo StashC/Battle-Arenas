@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AstarGrid : MonoBehaviour
 {
+    public bool displayGridGizmos;
     public Vector2 gridWorldSize;
     public float nodeSize;
     public LayerMask unwalkableMask;
@@ -13,7 +14,7 @@ public class AstarGrid : MonoBehaviour
     float nodeDiameter;
     int gridLenX, gridLenY;
 
-    void Start() {
+    void Awake() {
         gridLenX = Mathf.RoundToInt(gridWorldSize.x / nodeSize);
         gridLenY = Mathf.RoundToInt(gridWorldSize.y / nodeSize);
         CreateGrid();
@@ -22,7 +23,6 @@ public class AstarGrid : MonoBehaviour
     void CreateGrid() {
         grid = new Node[gridLenX, gridLenY];
         Vector3 bottomLeftWorld = transform.position - gridWorldSize.x / 2 * Vector3.right - gridWorldSize.y/ 2 * Vector3.up;
-
 
         for (int x = 0; x < gridLenX; x++) {
             for(int y = 0; y < gridLenY; y++) {
@@ -65,17 +65,13 @@ public class AstarGrid : MonoBehaviour
         return neighbours;
     }
 
-    public List<Node> path;
+ 
     void OnDrawGizmos() {
         Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, gridWorldSize.y, 1));
-
-        if(grid != null) {
+        if(grid != null && displayGridGizmos) {
             foreach(Node n in grid) {
                 //if n is walkable? -> color = white. else, color = red.
                 Gizmos.color = (n.walkable) ? Color.white : Color.red;
-                if(path != null)
-                    if(path.Contains(n))
-                        Gizmos.color = Color.black;
                 Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeSize - 0.1f));
             }
         }
